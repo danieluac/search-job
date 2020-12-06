@@ -1,0 +1,102 @@
+
+@font-face{
+    font-family: 'caviar';
+    src: url('../fonts/CaviarDreams.ttf');
+}
+@font-face{
+    font-family: 'lato';
+    src: url('../fonts/Lato-Regular.ttf');
+}
+@font-face{
+    font-family: 'lato-black';
+    src: url('../fonts/Lato-Black.ttf');
+}
+
+.font-lb{
+    font-family: "lato-black";
+}
+*{
+    font-family: "lato";
+}
+body{
+    background-image: url('../img/21.jpg') !important;
+    background-size: 100%;
+    background-repeat: repeat-Y;
+}
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+textarea,
+select,
+.card,
+.list-group-item
+{
+    background-color: rgba(0, 0, 0,.3) !important;
+    border-color: rgba(0, 0, 0,.3) !important;
+    color: #fff !important;
+}
+input[type="date"]:focus,
+textarea:focus,
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus,
+select:hover
+{
+    background-color: rgba(0, 0, 0,.3);
+    border-color: rgba(0, 0, 0,.3);
+}
+.bg-app {
+    background-color: rgba(6, 5, 22,.8) !important;
+    color: #fff;
+}
+.btn-app {
+    background-color: rgba(6, 5, 22,.8) !important;
+    color: #fff;
+}
+.btn-app:hover {
+    background-color: rgba(6, 5, 22,.8) !important;
+    color: rgba(255, 255, 255,.8) !important;
+}
+.btn-outline-app {
+    border: 1px solid rgba(6, 5, 22,.8) !important;
+    color: rgba(255, 255, 255,.8) !important;
+}
+.btn-outline-app:hover {
+    background-color: rgba(6, 5, 22,.8) !important;
+    color: rgba(255, 255, 255,.8) !important;
+}
+.color-app {
+    color: rgba(6, 5, 22,.8) !important;
+}
+.color-app:hover {
+    color: rgba(6, 5, 22,.75) !important;
+}
+.border-color{
+    border-color: rgba(6, 5, 22,.8) !important;
+}
+span > i {
+    font-size: 100px !important;
+}
+header nav ul > li a {
+    color: #fff !important;
+    font-weight: 500;
+    font-size: 17px;
+    font-family: "lato-black";
+}
+header nav ul > li a:hover {
+    color: rgba(255, 255, 255,.8) !important;
+    font-weight: 500;
+    font-size: 17px;
+}
+.job_card
+.card {
+    border-color: green;
+}
+.job_card
+.card li {
+    border: none;
+}
