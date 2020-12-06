@@ -32,79 +32,33 @@
 
        <div class="col-md-12 job_card">
             <div class="row mt-0"> 
+               
+                @foreach($jobs as $data)
                 <div class="col-md-4 mb-3">
                     <div class="card border-1 border-color ">
                         <li class="list-group-item text-white pb-1">
                         
                             <p class="m-0 ">  
-                                        Empresa : <span class="font-lb">kadima Techonoly</span>
+                                        Empresa : <span class="font-lb">{{$data->company->name}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Vaga :  <span class="font-lb">Web developer</span>
+                                        Vaga :  <span class="font-lb">{{$data->job_title}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Nº de vaga :  <span class="font-lb">3</span>
+                                        Nº de vaga :  <span class="font-lb">{{$data->job_number}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        <small>Luanda, Angola</small>
+                                        <small>{{$data->job_location}}</small>
                                     </p> 
-                                    <a href="" class=" btn btn-outline-app mb-2 mt-3 btn-block">
+                                    <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-success mb-2 mt-3 pull-right">
                                             Candidate-se
                                     </a>
                                                         
                         </li>
 
                     </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card border-1 border-color ">
-                        <li class="list-group-item text-white pb-1">
-                        
-                            <p class="m-0 ">  
-                                        Empresa : <span class="font-lb">kadima Techonoly</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        Vaga :  <span class="font-lb">Web developer</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        Nº de vaga :  <span class="font-lb">3</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        <small>Luanda, Angola</small>
-                                    </p> 
-                                    <a href="" class=" btn btn-outline-app mb-2 mt-3 btn-block">
-                                            Candidate-se
-                                    </a>
-                                                        
-                        </li>
-
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card border-1 border-color ">
-                        <li class="list-group-item text-white pb-1">
-                        
-                            <p class="m-0 ">  
-                                        Empresa : <span class="font-lb">kadima Techonoly</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        Vaga :  <span class="font-lb">Web developer</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        Nº de vaga :  <span class="font-lb">3</span>
-                                    </p>
-                                    <p class="m-0"> 
-                                        <small>Luanda, Angola</small>
-                                    </p> 
-                                    <a href="" class=" btn btn-outline-app mb-2 mt-3 btn-block">
-                                            Candidate-se
-                                    </a>
-                                                        
-                        </li>
-
-                    </div>
-                </div>
-                
+                </div>        
+            @endforeach            
             </div>
         </div>
     </div>

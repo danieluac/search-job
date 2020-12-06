@@ -25,7 +25,15 @@ Route::group([
     'prefix' => 'job'
 ],function(){
     Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
+    Route::get('/seeker-index-job/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
+
     Route::get('/create-job', "Company\JobsCtrl@createJobs")->name("create_jobs");
+    Route::get('/company-index-job', "Company\JobsCtrl@index")->name("indexed_jobs");
+
+
+    Route::get('/company-close-job/{job_id}', "Company\JobsCtrl@fecharVaga")->name("close_jobs");
+    Route::POST('/create-job', "Company\JobsCtrl@store")->name("store_jobs");
+    Route::POST('/create-job/{job_id}', "Company\JobsCtrl@update")->name("update_jobs");
 });
 Route::group([
     'middleware' => ['guest'],

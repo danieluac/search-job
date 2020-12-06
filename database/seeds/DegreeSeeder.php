@@ -12,12 +12,12 @@ class DegreeSeeder extends Seeder
     public function run()
     {
         $dados = [
+            ["name"=> "Sem Preferência" ],
             ["name"=> "Ensino Secundário" ],
             ["name"=> "Frequência Universitária" ],
             ["name"=> "Licenciado" ],
             ["name"=> "Mestrado" ],
             ["name"=> "Doutorado" ],
-            ["name"=> "Sem Preferência" ],
         ];
 
         foreach ($dados as $key => $value) {

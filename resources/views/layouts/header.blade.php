@@ -31,7 +31,7 @@
                                     <a class="nav-link" aria-expanded="false" role="button" href=""> Inscritos</a>
                                 </li>
                                 <li lass="nav-item">
-                                    <a class="nav-link" aria-expanded="false" role="button" href=""> Procure Candidatos</a>
+                                    <a class="nav-link" aria-expanded="false" role="button" href="{{route('indexed_jobs')}}"> Vagas publicadas</a>
                                 </li>
                                 <li lass="nav-item">
                                     <a class="nav-link" href="{{route('create_jobs')}}">Cadastre vagas</a>
