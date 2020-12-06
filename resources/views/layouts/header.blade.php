@@ -28,10 +28,13 @@
                                 </li>
                             @elseif(Auth::user()->type == "Company")
                                 <li lass="nav-item">
-                                    <a class="nav-link" aria-expanded="false" role="button" href="layouts.html"> Procure Candidatos</a>
+                                    <a class="nav-link" aria-expanded="false" role="button" href=""> Inscritos</a>
                                 </li>
                                 <li lass="nav-item">
-                                    <a class="nav-link" href="">Cadastre vagas</a>
+                                    <a class="nav-link" aria-expanded="false" role="button" href=""> Procure Candidatos</a>
+                                </li>
+                                <li lass="nav-item">
+                                    <a class="nav-link" href="{{route('create_jobs')}}">Cadastre vagas</a>
                                 </li>
                             @endif
                     @endguest

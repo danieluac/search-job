@@ -17,7 +17,7 @@ class CreateSkillsTable extends Migration
             $table->id();
             $table->foreignId("seeker_id")->constrained("seekers")->onDelete("cascade");
             $table->string("name");
-            $table->enum("acquisition_option",['autodidact','institute']);
+            $table->enum("acquisition_option",['autodidact','institute'])->nullable();
             $table->string("acquisition_place")->nullable();
             $table->text("description")->nullable();
             $table->timestamps();

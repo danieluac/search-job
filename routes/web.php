@@ -25,6 +25,7 @@ Route::group([
     'prefix' => 'job'
 ],function(){
     Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
+    Route::get('/create-job', "Company\JobsCtrl@createJobs")->name("create_jobs");
 });
 Route::group([
     'middleware' => ['guest'],

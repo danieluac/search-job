@@ -17,11 +17,11 @@ class CreateQualificationsTable extends Migration
             $table->id();
             $table->foreignId("seeker_id")->constrained("seekers")->onDelete("cascade");
             $table->foreignId('degree_id')->constrained('degrees')->onDelete("cascade");
-            $table->string("course");
-            $table->string("place_degree");
-            $table->year("issue_year");
+            $table->string("course")->nullable();
+            $table->string("place_degree")->nullable();
+            $table->year("issue_year")->nullable();
             $table->year("end_year")->nullable();
-            $table->enum("status",['attending','attended']);
+            $table->enum("status",['attending','attended'])->nullable();
             $table->timestamps();
 
         });

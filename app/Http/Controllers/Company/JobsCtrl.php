@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Helpers\OwnerHelpers;
 class JobsCtrl extends Controller
 {
     public function __construct(){
@@ -17,7 +17,16 @@ class JobsCtrl extends Controller
      */
     public function findJobs()
     {
-        return view("jobs.find-job");
+        return view("jobs.find-job",[
+            "activities" => (OwnerHelpers::activity)::all(),
+        ]);
+    }
+    public function createJobs()
+    {
+        return view("company.job-create.create",[
+            "degrees" => (OwnerHelpers::degrees)::all(),
+            "activities" => (OwnerHelpers::activity)::all(),
+        ]);
     }
 
     /**

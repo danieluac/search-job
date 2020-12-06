@@ -16,11 +16,10 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string("job_position");
-            $table->text("job_description");
-            $table->date("start_date");
-            $table->date("end_date");
-            $table->integer("job_number");
-            $table->date("active_area");
+            $table->text("job_description")->nullable();
+            $table->date("end_date")->nullable();
+            $table->integer("job_number")->nullable();
+            $table->foreignId("activity_id")->constrained("activities")->onDelete("cascade");
             $table->foreignId("degree_id")->constrained("degrees")->onDelete("cascade");
             $table->foreignId("company_id")->constrained("companies")->onDelete("cascade");
             $table->timestamps();

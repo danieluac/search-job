@@ -15,14 +15,12 @@
                         </div>
                         <div class="col-md-6">
                                     <label for="degree_id">Área funcional</label>
-                                    <select class="form-control" name="degree_id" id="degree_id" required="">
-                                    
-                                    <option value="">It</option>
-                                    <option value="">web Development</option>
-                                    <option value="">Commerce</option>
-                                    <option value="">Accounting and Finance</option>
-                                    <option value="">Other</option>
-                                    </select>
+                            <select class="form-control" name="degree_id" id="degree_id" required="">
+                                <option selected disabled>Selecione: </option>
+                                @foreach($activities as $degree)
+                                <option value="{{$degree->id}}">{{$degree->name}}</option>
+                                @endforeach
+                            </select>
                                 </div>
                         <div class="col-md-12 pt-3">
                             <button type="button" class="btn btn-app pull-right"> <i class="fa fa-search"></i> Procurar</button>

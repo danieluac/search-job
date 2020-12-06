@@ -8,6 +8,7 @@ use App\Models\Seekers\qualifications;
 use App\Models\Seekers\degrees;
 use auth;
 
+
 class QualificationsCtrl extends Controller
 {
    
