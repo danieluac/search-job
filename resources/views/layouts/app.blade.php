@@ -16,6 +16,7 @@
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/job_style.css') }}" rel="stylesheet">
+    @yield('styles')
 </head>
 <body>
     <div id="app">

@@ -11,7 +11,7 @@
             </div>
             <div class="card col-md-7 p-0 mb-4 m-auto ">
                 <div class="card-header bg-dark text-white p-2 pl-4">
-                    <p class="p-0 m-0">Vaga: <strong>{{$job->job_title}}</strong>
+                    <p class="p-0 m-0">Cargo: <strong>{{$job->job_title}}</strong>
                         <a href="{{route('skills_create')}}" class="btn p-0 pl-2 pr-2 m-0 btn-success pull-right">
                             Aplicar
 
@@ -21,35 +21,18 @@
                 </div>
                 <div class="card-body bg-dark text-white">
                     <div>
-                    <h5 class="m-0 mt-3 ">
-                            Titulo Academico
-                        </h5>
-                        <p class="pl-3">{{$job->degree->name}}</p>
-                        <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Ullam aut suscipit doloribus expedita! Distinctio nemo non <br>
-                        architecto nulla, culpa labore? Molestias voluptates quas quis nostrum quae impedit eligendi, voluptatum error!
-                        </p>
-                        <h5 class="m-0 mt-3">
-                            Comptências
-                        </h5>
-                        <ul>
-                            <li>POO</li>
-                            <li>Laravel</li>
-                            <li>Blade</li>
-                            <li>HTML5/CSS/SCSS</li>
-                            <li>Inglês escrito</li>
-                        </ul>  
-                        <h5 class="m-0 mt-3">
-                            Função a Desepenhar
-                        </h5>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                            Ullam aut suscipit doloribus expedita! Distinctio nemo non
-                            architecto nulla, culpa labore? Molestias voluptates quas quis nostrum quae impedit eligendi, voluptatum error!
-                        </p>
-
-                   
+                    <h6 class="m-0 mt-3 ">
+                            Vagas : <small class="pl-3">{{$job->job_number}}</small> 
+                    </h6>
+                    <h6 class="m-0 mt-3 ">
+                    Oferta aberta até: <small class="pl-3">{{$job->end_date}}</small> 
+                    </h6>  
+                    <h6 class="m-0 mt-3 ">
+                            Titulo Academico : <small class="pl-3">{{$job->degree->name}}</small> 
+                    </h6>                                           
+                    <div class="drecription">
+                            {!! $job->job_description !!}
+                    </div>
                     </div>
                 </div>
             </div> 
