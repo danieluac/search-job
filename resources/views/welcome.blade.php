@@ -7,7 +7,7 @@
                 <div class=" col-md-12  mb-5">
                 
                 <div class=" p-3 pl-5 pr-5" style="background: none; border-radius:5px">
-                            <a href="" class="btn btn-success btn-lg p-2"> <i class="fa fa-search"></i> Encontre oportunidades de trabalho</a>
+                            <a href="{{ route('find_jobs') }}" class="btn btn-success btn-lg p-2"> <i class="fa fa-search"></i> Encontre oportunidades de trabalho</a>
                         </div>
                 </div>
                 </div>
@@ -17,7 +17,7 @@
                         <div class=" m-b-md shadow-sm p-3 pl-5 pr-5" style="background: rgba(0,0,0,.4); border-radius:5px">
                             <span> <i class="fa fa-cog text-white"></i></span>
                             <p class="text-white">Personalize seu curriculo para que recrutadores possam encontra-lo facilmente</p>
-                            <a href="" class="btn btn-outline-light btn-lg "> Crie Curriculos</a>
+                            <a href="{{ route('register') }}" class="btn btn-outline-light btn-lg "> Crie Curriculos</a>
                         </div>
                     </div>
                 </div>

@@ -51,19 +51,25 @@
                                     </p>
                                     <p class="m-0"> 
                                         Nº de vaga :  <span class="font-lb">{{$data->job_number}}</span> | 
-                                        Candidaturas :  <span class="font-lb">{{count_candidatura($data->id)}}</span>
+                                        Candidaturas :  <span class="font-lb">{{isset(Auth::user()->owner_id)?count_candidatura($data->id) : 0}}</span>
                                     </p>
                                     <p class="m-0"> 
                                         <small>{{$data->job_location}}</small>
                                     </p> 
-                                    @if(verifica_candidatura(Auth::user()->owner_id, $data->id))
-                                        <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
-                                                Inscrito
-                                        </a>
-                                    @else 
-                                        <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-success mb-2 mt-3 pull-right">
-                                                Candidate-se
-                                        </a>
+                                    @if(isset(Auth::user()->owner_id))
+                                        @if(verifica_candidatura(Auth::user()->owner_id, $data->id))
+                                            <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                                    Inscrito
+                                            </a>
+                                        @else 
+                                            <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-success mb-2 mt-3 pull-right">
+                                                    Candidate-se
+                                            </a>
+                                        @endif
+                                    @else
+                                    <a href="{{route('login')}}" class=" btn btn-success mb-2 mt-3 pull-right">
+                                                    Candidate-se
+                                    </a>
                                     @endif
                                     
                                                         
