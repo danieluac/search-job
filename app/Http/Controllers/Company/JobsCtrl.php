@@ -25,9 +25,36 @@ class JobsCtrl extends Controller
         ]);
     }
     public function seekerIndexJobsById($job_id){
-        Session::flash("aviso", "Lamentamos, mas você não é um candidato top para está vaga, por causa do seu titulo academico...");
+        $job = (OwnerHelpers::jobs)::where("state",0)->where("id",$job_id)->first();
+        
+        if(Auth::user()->owner_type != OwnerHelpers::company_type){
+            $seeker_id = Auth::user()->owner_id;
+            $top = false;
+            // $job_seeker = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->where("seeker_id", $seeker_id)->get();
+            $qualifications = (OwnerHelpers::qualifications)::where("seeker_id", $seeker_id)->get();
+            foreach( $qualifications as $data){
+                if($data->degree_id >= $job->degree_id ){
+                    $top = true;
+                }
+            }
+            if($top != true)
+                Session::flash("aviso", "Lamentamos, mas você não é um candidato top para está vaga, por causa do seu titulo academico...");
+        }
         return view("company.jobs.job-detail",[
-            "job" => (OwnerHelpers::jobs)::where("state",0)->where("id",$job_id)->first(),
+            "job" => $job,
+        ]);
+    }
+    public function my_job_application(){
+
+        if(Auth::user()->owner_type != OwnerHelpers::company_type){
+            $seeker_id = Auth::user()->owner_id;
+            $job_seeker = (OwnerHelpers::job_seekers)::where("seeker_id", $seeker_id)->get();
+            
+        }else {
+
+        }
+        return view("company.jobs.job-my-application",[
+            "job_seeker" => $job_seeker,
         ]);
     }
     public function indexJobSeekers($job_id){
@@ -49,6 +76,14 @@ class JobsCtrl extends Controller
             "activities" => (OwnerHelpers::activity)::all(),
         ]);
     }
+    public function editJobs($job_id)
+    {
+        return view("company.jobs.edit",[
+            "job" => (OwnerHelpers::jobs)::find($job_id),
+            "degrees" => (OwnerHelpers::degrees)::all(),
+            "activities" => (OwnerHelpers::activity)::all(),
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -66,6 +101,25 @@ class JobsCtrl extends Controller
            return redirect()->back(); 
         }
         Session::flash("erro","Não foi possível fechar a vaga...");
+        return redirect()->back();        
+    }
+    public function apply_job(Request $request)
+    {
+        Session::flash("aviso","Alguns campos são de preenchimento obrigatório...");
+        $this->validate($request, [
+            "job_id" => "required|integer",
+            "seeker_id" => "required|integer",
+        ]);
+        $job_seekers = (OwnerHelpers::job_seekers);
+        $job_seeker = new $job_seekers;
+        $job_seeker->status = "applied";
+        $job_seeker->seeker_id  = $request->seeker_id;
+        $job_seeker->job_id   = $request->job_id ;
+        if($job_seeker->save()){           
+            Session::flash("sucesso","Aplicado com sucesso");
+           return redirect()->back(); 
+        }
+        Session::flash("erro","Não foi possível aplicar a vaga...");
         return redirect()->back();        
     }
 
@@ -122,7 +176,6 @@ class JobsCtrl extends Controller
             "end_date" => "required|date",
             "activity_id" => "required|integer",
             "degree_id" => "required|integer",
-            "company_id" => "required|integer",
             "job_location" => "required",
             "job_description" => "required",
         ]);
@@ -134,7 +187,6 @@ class JobsCtrl extends Controller
             $jobs->end_date = $request->end_date;
             $jobs->activity_id = $request->activity_id;
             $jobs->degree_id = $request->degree_id;
-            $jobs->company_id = $request->company_id;
             $jobs->job_location =  $request->job_location;
             $jobs->job_description = $request->job_description;
            if( $jobs->save())

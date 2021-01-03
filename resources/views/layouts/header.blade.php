@@ -24,7 +24,7 @@
                                     <a class="nav-link" aria-expanded="false" role="button" href="{{route('find_jobs')}}"> Vagas</a>
                                 </li>
                                 <li lass="nav-item">
-                                    <a class="nav-link" href="">Minhas candidaturas</a>
+                                    <a class="nav-link" href="{{route('my_job_application')}}">Minhas candidaturas</a>
                                 </li>
                             @elseif(Auth::user()->type == "Company")
                                 <li lass="nav-item">

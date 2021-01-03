@@ -43,11 +43,11 @@
                         </div>
                     </div>
                         <div class="col-md-6 mt-3">
-                            <label for="">Data de inicio</label>
+                            <label for="">Ano de inicio</label>
                             <input name="issue_year" type="number" max="{{date('Y')}}" required="" class="form-control">
                         </div>
                         <div class="col-md-6 mt-3">
-                            <label for="">Data de fim</label>
+                            <label for="">Ano de fim</label>
                             <input name="end_year" type="number"  class="form-control">
                         </div>
                     <div class="col-12 mt-3">

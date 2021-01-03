@@ -28,12 +28,16 @@ Route::group([
     Route::get('/seeker-index-job/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
 
     Route::get('/create-job', "Company\JobsCtrl@createJobs")->name("create_jobs");
+    Route::get('/update-job/{job_id}', "Company\JobsCtrl@editJobs")->name("edit_jobs");
+
     Route::get('/company-index-job', "Company\JobsCtrl@index")->name("indexed_jobs");
+    Route::get('/job-my-application', "Company\JobsCtrl@my_job_application")->name("my_job_application");
 
 
     Route::get('/company-close-job/{job_id}', "Company\JobsCtrl@fecharVaga")->name("close_jobs");
     Route::POST('/create-job', "Company\JobsCtrl@store")->name("store_jobs");
-    Route::POST('/create-job/{job_id}', "Company\JobsCtrl@update")->name("update_jobs");
+    Route::POST('/apply-job', "Company\JobsCtrl@apply_job")->name("apply_jobs");
+    Route::POST('/update-job/{job_id}', "Company\JobsCtrl@update")->name("update_jobs");
 });
 Route::group([
     'middleware' => ['guest'],
