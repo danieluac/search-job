@@ -59,6 +59,8 @@ Route::group([
 ],function(){
 
 Route::get('/profile', "SeekersCtrl@profile")->name("profile");
+Route::get('/profile-edit/{seeker_id}', "SeekersCtrl@profile_edit")->name("profile_edit");
+Route::post('/profile-update', "SeekersCtrl@update")->name("profile_update");
 
 Route::get('/qualifications/create', "QualificationsCtrl@create")->name("qualifications_create");
 Route::Post('/qualifications/store', "QualificationsCtrl@store")->name("qualifications_store");

@@ -8,25 +8,32 @@
        <div class="col-md-4 col-sm-12 mb-4" >
             <div class="card col-md-12 p-0 mb-4 m-auto  " style="height: 100vh">
                 <div class="card-header bg-dark text-white">
-                    <p><strong>Status</strong>
-                        <a href='' class="btn btn-outline-light pull-right">
+                    <div class="btn-group pull-right">
+                        <a href='{{route("profile_edit",[auth::user()->owner->id])}}' class="btn btn-outline-light">
                             <i class="fa fa-edit"></i>
                         </a>
-                    </p>
+                        <a href='{{route("seeker_cv",[auth::user()->owner->id])}}' class="btn btn-outline-light ">
+                            <i class="fa fa-print"></i> CV
+                        </a>
+                    </div>
                 
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                     <h4 class="m-0"><strong>{{auth::user()->name}}</strong></h4>
                     <strong> Nascimento </strong><small></small>
-                    <p class="m-0"> <small> {{auth::user()->owner->date_birth}} </small> </p>
+                    <p class="m-0"> 
+                        <small> {{dateTransform(auth::user()->owner->date_birth,"/")}}</small> 
+                         &nbsp;&nbsp; ({{(date("Y")-dateTransform(auth::user()->owner->date_birth,"Y"))}})
+                        </p>
+
                     <strong> Email </strong>
-                    <p class="m-0"> <small> {{auth::user()->owner->email}} </small> </p>
+                    <p class="m-0"><small> <i class="fa fa-envelope"></i> &nbsp;&nbsp; {{auth::user()->owner->email}} </small> </p>
                     <strong> Telefone </strong>
-                    <p class="m-0"> <small> {{auth::user()->owner->telephone}} </small> </p>
+                    <p class="m-0"><small><i class="fa fa-phone"></i> &nbsp;&nbsp; (+244) {{auth::user()->owner->telephone}} </small> </p>
                     
-                    <strong> Línguas </strong>
-                    <p class="p-0 m-0"> <small> Inglês (médio) </small> </p>
+                    <!-- <strong> Línguas </strong>
+                    <p class="p-0 m-0"> <small> Inglês (médio) </small> </p> -->
                    
                     <strong> Sobre </strong>
                     <p class="m-0"> <small>
