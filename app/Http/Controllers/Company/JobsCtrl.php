@@ -19,15 +19,9 @@ class JobsCtrl extends Controller
      */
     public function findJobs($activity_id = 0)
     {
-        $activity = [];
-        if($activity_id == 0){
-            $activity = (OwnerHelpers::jobs)::where("state",0)
+        $activity = (OwnerHelpers::jobs)::where("state",0)
             ->where("end_date",">", date("Y-m-d"))
             ->inRandomOrder()->limit(12)->get();
-        }else
-            $activity = (OwnerHelpers::jobs)::where("state",0)
-            ->where("end_date",">", date("Y-m-d"))->where("activity_id", $activity_id)
-            ->inRandomOrder()->limit(20)->get();
 
         return view("jobs.find-job",[
             "activities" => (OwnerHelpers::activity)::all(),

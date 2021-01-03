@@ -26,21 +26,21 @@
                    
                     <div class="col-md-12 mt-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="status" value="attended">
+                            <input class="form-check-input ckeck-work" type="radio" checked=""  name="status" id="status" value="attended">
                             <label class="form-check-label" for="status">Trabalhou</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" checked="" name="status" id="status1" value="attending">
+                            <input class="form-check-input ckeck-work" type="radio" name="status" id="status1" value="attending">
                             <label class="form-check-label" for="status1">Trabalhando</label>
                         </div>
                     </div>
                         <div class="col-md-6 mt-3">
                             <label for="">data de inicio</label>
-                            <input name="start_date" type="date" class="form-control">
+                            <input id="start_date" name="start_date" type="date" class="form-control">
                         </div>
-                        <div class="col-md-6 mt-3">
+                        <div id="end_dateDiv" class="col-md-6 mt-3">
                             <label for="">data de fim</label>
-                            <input name="end_date" type="date" class="form-control">
+                            <input id="end_date" name="end_date" type="date" class="form-control">
                         </div>
                     <div class="col-md-12">
                         <label for="">Descrição</label>
@@ -64,6 +64,14 @@
 @section("scripts")
 
 <script >
- 
+    // $("#end_dateDiv").hide();
+ $(".ckeck-work").click(function(){
+
+    if($(this).val() == "attended"){
+        $("#end_dateDiv").show();
+    }else if($(this).val() == "attending"){
+        $("#end_dateDiv").hide();
+    }
+ })
 </script>
 @endsection
