@@ -41,15 +41,16 @@
                         <li class="list-group-item text-white pb-1">
                         
                             <p class="m-0 ">  
-                                        Empresa : <span class="font-lb">{{$data->company->name}}</span>
+                                       <span class="font-lb">{{$data->company->name}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Vaga :  <span class="font-lb">{{$data->job_title}}</span>
+                                        Cargo :  <span class="font-lb">{{$data->job_title}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Nº de vaga :  <span class="font-lb">{{$data->job_number}}</span>
+                                        Área funcional :  <span class="font-lb">{{$data->activity->name}}</span>
                                     </p>
                                     <p class="m-0"> 
+                                        Nº de vaga :  <span class="font-lb">{{$data->job_number}}</span> | 
                                         Candidaturas :  <span class="font-lb">{{count_candidatura($data->id)}}</span>
                                     </p>
                                     <p class="m-0"> 
