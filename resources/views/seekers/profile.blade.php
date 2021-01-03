@@ -32,9 +32,6 @@
                     <strong> Telefone </strong>
                     <p class="m-0"><small><i class="fa fa-phone"></i> &nbsp;&nbsp; (+244) {{auth::user()->owner->telephone}} </small> </p>
                     
-                    <!-- <strong> Línguas </strong>
-                    <p class="p-0 m-0"> <small> Inglês (médio) </small> </p> -->
-                   
                     <strong> Sobre </strong>
                     <p class="m-0"> <small>
                         {{auth::user()->owner->description}}

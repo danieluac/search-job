@@ -7,23 +7,25 @@
     <div class="row">
         <div class="col-md-12 mb-4">
             <div class="card border-0">
-                <form action="">
+                <form action="{{route('search_jobs')}}" method="Post">
+                    @method("POST")
+                    @csrf
                     <div class="row p-4 pt-4 pb-5">
                         <div class="col-md-6">
                             <label for="">Pesquisar</label>
-                            <input type="text" class="form-control"/>
+                            <input name="text_filter" type="text" class="form-control"/>
                         </div>
                         <div class="col-md-6">
-                                    <label for="degree_id">Área funcional</label>
-                            <select class="form-control" name="degree_id" id="degree_id" required="">
+                                    <label for="activity_id">Área funcional</label>
+                            <select class="form-control" name="activity_id" id="activity_id" required="">
                                 <option selected disabled>Selecione: </option>
-                                @foreach($activities as $degree)
-                                <option value="{{$degree->id}}">{{$degree->name}}</option>
+                                @foreach($activities as $data)
+                                <option value="{{$data->id}}">{{$data->name}}</option>
                                 @endforeach
                             </select>
                                 </div>
                         <div class="col-md-12 pt-3">
-                            <button type="button" class="btn btn-app pull-right"> <i class="fa fa-search"></i> Procurar</button>
+                            <button type="submit" class="btn btn-app pull-right"> <i class="fa fa-search"></i> Procurar</button>
                         </div>
                     </div>
                 </form>

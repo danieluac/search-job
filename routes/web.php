@@ -25,6 +25,8 @@ Route::group([
     'prefix' => 'job'
 ],function(){
     Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
+    Route::post('/search-for-job', "Company\JobsCtrl@search_jobs")->name("search_jobs");
+
     Route::get('/job-details/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
     Route::get('/application-list/{job_id}', "Company\JobsCtrl@application_list")->name("application_list");
 
