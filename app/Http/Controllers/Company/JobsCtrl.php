@@ -21,16 +21,15 @@ class JobsCtrl extends Controller
     {
         return view("jobs.find-job",[
             "activities" => (OwnerHelpers::activity)::all(),
-            "jobs" => (OwnerHelpers::jobs)::where("state",0)->inRandomOrder()->limit(12)->get()
+            "jobs" => (OwnerHelpers::jobs)::where("state",0)->where("end_date",">", date("Y-m-d"))->inRandomOrder()->limit(12)->get()
         ]);
     }
     public function seekerIndexJobsById($job_id){
-        $job = (OwnerHelpers::jobs)::where("state",0)->where("id",$job_id)->first();
+        $job = (OwnerHelpers::jobs)::where("state",0)->where("id",$job_id)->first();        
         
         if(Auth::user()->owner_type != OwnerHelpers::company_type){
             $seeker_id = Auth::user()->owner_id;
             $top = false;
-            // $job_seeker = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->where("seeker_id", $seeker_id)->get();
             $qualifications = (OwnerHelpers::qualifications)::where("seeker_id", $seeker_id)->get();
             foreach( $qualifications as $data){
                 if($data->degree_id >= $job->degree_id ){
@@ -40,22 +39,65 @@ class JobsCtrl extends Controller
             if($top != true)
                 Session::flash("aviso", "Lamentamos, mas você não é um candidato top para está vaga, por causa do seu titulo academico...");
         }
+
         return view("company.jobs.job-detail",[
             "job" => $job,
         ]);
     }
     public function my_job_application(){
-
-        if(Auth::user()->owner_type != OwnerHelpers::company_type){
-            $seeker_id = Auth::user()->owner_id;
-            $job_seeker = (OwnerHelpers::job_seekers)::where("seeker_id", $seeker_id)->get();
-            
-        }else {
-
+        $job_seeker = [];
+        if(Auth::user()->owner_type != OwnerHelpers::company_type){            
+            $job_seeker = (OwnerHelpers::job_seekers)::where("seeker_id", Auth::user()->owner_id)->get();            
         }
         return view("company.jobs.job-my-application",[
             "job_seeker" => $job_seeker,
         ]);
+    }
+    public function select_seeker($seeker_job_id){
+        $job_seeker = (OwnerHelpers::job_seekers)::where("id",$seeker_job_id)->get()->last(); 
+        
+
+        if(Auth::user()->owner_type == OwnerHelpers::company_type and isset($job_seeker)){ 
+            $job_seeker->status = "selected";
+            if($job_seeker->save()){     
+                Session::flash("sucesso","Candidato selecionado...");                    
+            }else 
+                Session::flash("erro","Não possível selecionar o Candidato...");   
+        }else 
+            Session::flash("erro","Não possível selecionar o Candidato...");
+        return redirect()->back();
+            
+    }
+    public function unselect_seeker($seeker_job_id){
+        $job_seeker = (OwnerHelpers::job_seekers)::where("id",$seeker_job_id)->get()->last(); 
+        
+
+        if(Auth::user()->owner_type == OwnerHelpers::company_type and isset($job_seeker)){ 
+            $job_seeker->status = "applied";
+            if($job_seeker->save()){     
+                Session::flash("sucesso","Seleção cancelada...");                    
+            }else 
+                Session::flash("erro","Não possível cancelar a seleção...");   
+        }else 
+            Session::flash("erro","Não possível cancelar a seleção...");
+        return redirect()->back();            
+    }
+    public function seeker_cv($seeker_id, $job_seeker_id= 0){
+
+        $seeker = (OwnerHelpers::seeker_type)::where("id", $seeker_id)->get()->last();        
+        return view("company.jobs.seeker-cv",[
+            "seeker" => $seeker,
+            "job_seeker_id" => $job_seeker_id
+        ]);
+
+    }
+    public function application_list($job_id){
+        $job_seeker = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->get();  
+      
+        return view("company.jobs.application-list",[
+            "job_seeker" => $job_seeker,
+        ]);
+
     }
     public function indexJobSeekers($job_id){
         

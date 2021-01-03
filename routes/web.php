@@ -25,13 +25,18 @@ Route::group([
     'prefix' => 'job'
 ],function(){
     Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
-    Route::get('/seeker-index-job/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
+    Route::get('/job-details/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
+    Route::get('/application-list/{job_id}', "Company\JobsCtrl@application_list")->name("application_list");
 
     Route::get('/create-job', "Company\JobsCtrl@createJobs")->name("create_jobs");
     Route::get('/update-job/{job_id}', "Company\JobsCtrl@editJobs")->name("edit_jobs");
 
     Route::get('/company-index-job', "Company\JobsCtrl@index")->name("indexed_jobs");
     Route::get('/job-my-application', "Company\JobsCtrl@my_job_application")->name("my_job_application");
+    Route::get('/seeker-detail/{seeker_id}', "Company\JobsCtrl@seeker_cv")->name("seeker_cv");
+    Route::get('/seeker-detail/{seeker_id}/{job_seeker_id?}', "Company\JobsCtrl@seeker_cv")->name("seeker_cv");
+    Route::post('/select-seeker/{seeker_id}', "Company\JobsCtrl@select_seeker")->name("select_seeker");
+    Route::post('/unselect-seeker/{seeker_id}', "Company\JobsCtrl@unselect_seeker")->name("unselect_seeker");
 
 
     Route::get('/company-close-job/{job_id}', "Company\JobsCtrl@fecharVaga")->name("close_jobs");

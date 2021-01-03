@@ -22,17 +22,20 @@
                                         Derpatamento :  <span class="font-lb">{{$data->activity->name}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Nº de candidatos :  <span class="font-lb">{{$data->job_number}}</span>
-                                    </p>                                   
-                                    <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-light mb-2 mt-3 ">
+                                        Nº de candidatos :  <span class="font-lb">{{count_candidatura($data->id)}}</span>
+                                    </p>
+                                    <div class="btn-group">
+
+                                        <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-light mb-2 mt-3 ">
                                             <i class="fa fa-eye"></i>
-                                    </a>
-                                    <a href="{{route('edit_jobs',[$data->id])}}" class=" btn btn-primary mb-2 mt-3 text-white">
-                                    <i class="fa fa-edit"></i> Editar
-                                    </a>
-                                    <a href="{{route('close_jobs',[$data->id])}}" class=" btn btn-danger mb-2 mt-3 text-white">
-                                    <i class="fa fa-trash"></i> Fechar
-                                    </a>
+                                        </a>
+                                        <a href="{{route('application_list',[$data->id])}}" class=" btn btn-info mb-2 mt-3  text-white">
+                                             <i class="fa fa-list"></i> Lista de candidatos
+                                        </a>
+                                        <a href="{{route('close_jobs',[$data->id])}}" class=" btn btn-danger mb-2 mt-3 text-white">
+                                            <i class="fa fa-trash"></i> Fechar
+                                        </a>
+                                    </div>                                 
                                                         
                         </li>
 

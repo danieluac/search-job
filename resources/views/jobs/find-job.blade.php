@@ -48,11 +48,21 @@
                                         Nº de vaga :  <span class="font-lb">{{$data->job_number}}</span>
                                     </p>
                                     <p class="m-0"> 
+                                        Candidaturas :  <span class="font-lb">{{count_candidatura($data->id)}}</span>
+                                    </p>
+                                    <p class="m-0"> 
                                         <small>{{$data->job_location}}</small>
                                     </p> 
-                                    <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-success mb-2 mt-3 pull-right">
-                                            Candidate-se
-                                    </a>
+                                    @if(verifica_candidatura(Auth::user()->owner_id, $data->id))
+                                        <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                                Inscrito
+                                        </a>
+                                    @else 
+                                        <a href="{{route('seekerIndexJobsById',[$data->id])}}" class=" btn btn-success mb-2 mt-3 pull-right">
+                                                Candidate-se
+                                        </a>
+                                    @endif
+                                    
                                                         
                         </li>
 

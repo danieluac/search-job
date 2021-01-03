@@ -11,10 +11,9 @@
             </div>
             <div class="row mt-0"> 
             @foreach($job_seeker as $data)
-                <div class="col-md-4 mb-3">
+                <div class="col-md-5 mb-3">
                     <div class="card border-1 border-color ">
-                        <li class="list-group-item text-white pb-1">
-                        
+                        <li class="list-group-item text-white pb-1">                        
                             <p class="m-0 ">  
                                         Titulo : <span class="font-lb">{{$data->job->job_title}}</span>
                                     </p>
@@ -22,15 +21,13 @@
                                         Derpatamento :  <span class="font-lb">{{$data->job->activity->name}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Nº de candidatos :  <span class="font-lb">{{$data->job->job_number}}</span> |
-                                        Oferta aberta até: <span class="font-lb">{{dateTransform($data->job->end_date,"/")}}</span>
+                                        Nº de candidatos :  <span class="font-lb badge-success p-1 rounded">{{$data->job->job_number}}</span> |
+                                        Oferta aberta até: <span class="font-lb badge-success p-1 rounded">{{dateTransform($data->job->end_date,"/")}}</span>
                                     </p>                                   
                                     <a href="{{route('seekerIndexJobsById',[$data->job->id])}}" class=" btn btn-light mb-2 mt-3 ">
                                             <i class="fa fa-eye"></i>
-                                    </a>
-                                                        
+                                    </a>                                                        
                         </li>
-
                     </div>
                 </div>             
             @endforeach

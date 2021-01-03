@@ -100,3 +100,21 @@ header nav ul > li a:hover {
 .card li {
     border: none;
 }
+
+#printable .list-group-item {
+    background-color: transparent !important;
+    color: black !important;
+    border: none !important;
+}
+#printable .list-group-item i {
+    color: black !important;
+}
+.fz-12 {
+    font-size: 12px !important;
+}
+.fz-14 {
+    font-size: 14px !important;
+}
+.fz-16 {
+    font-size: 16px !important;
+}
