@@ -53,15 +53,12 @@
                 <ul class="list-group list-group-flush">
                 @foreach(auth::user()->owner->expirience()->orderBy("status","asc")->get() as $data)
                     <li class="list-group-item">
-                        <a href="javascript:" class=" m-1 text-warning pull-right" onclick="event.preventDefault();
+                        <a href="javascript:" class=" m-1 text-white pull-right" onclick="event.preventDefault();
                                                      document.getElementById('destroy-expirience').submit();">
                                 <i class="fa fa-trash"></i>
                         </a>
                         <form id="destroy-expirience" action="{{route('expirience_destroy',$data->id)}}" method="POST" >@csrf </form>
-                        <a href="{{route('expirience_edit',$data->id)}}" class=" m-1 text-white pull-right">
-                                <i class="fa fa-pencil"></i>
-                        </a>
-                       
+                        
                        
                     @if($data->status =="attended")
                         
@@ -114,14 +111,12 @@
                 <ul class="list-group list-group-flush">
                 @foreach(auth::user()->owner->qualification()->orderBy("status","asc")->get() as $data)
                     <li class="list-group-item">
-                    <a href="javascript:" class=" m-1 text-warning pull-right" onclick="event.preventDefault();
+                    <a href="javascript:" class=" m-1 text-white pull-right" onclick="event.preventDefault();
                                                      document.getElementById('destroy-qualifications').submit();">
                                 <i class="fa fa-trash"></i>
                         </a>
                         <form id="destroy-qualifications" action="{{route('qualifications_destroy',$data->id)}}" method="POST" >@csrf </form>
-                        <a href="" class=" m-1 text-white pull-right">
-                                <i class="fa fa-pencil"></i>
-                        </a>
+                       
                     @if($data->status =="attended")
                         
                         <p class="m-0"> 
@@ -164,14 +159,12 @@
                 <ul class="list-group list-group-flush">
                 @foreach(auth::user()->owner->skill as $data)
                     <li class="list-group-item">
-                    <a href="javascript:" class=" m-1 text-warning pull-right" onclick="event.preventDefault();
+                    <a href="javascript:" class=" m-1 text-white pull-right" onclick="event.preventDefault();
                                                      document.getElementById('destroy-skills').submit();">
                                 <i class="fa fa-trash"></i>
                         </a>
                         <form id="destroy-skills" action="{{route('skills_destroy',$data->id)}}" method="POST" >@csrf </form>
-                        <a href="" class=" m-1 text-white pull-right">
-                                <i class="fa fa-pencil"></i>
-                        </a>
+                        
                     @if($data->acquisition_option =="autodidact")
                         
                         <p class="m-0"> 
