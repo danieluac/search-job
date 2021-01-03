@@ -11,7 +11,7 @@
                             <tr>
                                 <tr>
                                     <th>Nome do candidato</th>
-                                    <th>Perfil</th>
+                                    <th>Curroculo</th>
                                     <th>#</th>
                                 </tr>
                             </tr>
@@ -21,11 +21,16 @@
                                 <tr>
                                     <td> {{$data->seeker->user[0]->name}}</td>                                   
                                     <td>
-                                    <a href="{{route('seeker_cv',[$data->seeker->id,$data->id])}}" class="border-0 btn btn-primary"> Ver CV</a>
+                                    <a href="{{route('seeker_cv',[$data->seeker->id,$data->id])}}" class="border-0 btn btn-primary">
+                                        <i class="fa fa-eye"></i> Ver CV</a>
                                         
                                     </td>
                                     <td>
-                                    <span class="badge-success p-2 rounded"> {{$data->status}}</span>
+                                        @if($data->status == "selected")
+                                            <span class="badge-success p-2 rounded"> {{$data->status}}</span>
+                                        @else 
+                                            <span class="badge-info p-2 rounded"> {{$data->status}}</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
