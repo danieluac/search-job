@@ -15,11 +15,12 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->morphs("from");
-            $table->morphs("to");
+            $table->foreignId("from")->constrained("users")->onDelete("cascade");
+            $table->foreignId("to")->constrained("users")->onDelete("cascade");
             $table->text("message");
             $table->string("title");
             $table->enum("viewed",["1","0"]);
+            $table->date("sent_date");
             $table->timestamps();
         });
     }

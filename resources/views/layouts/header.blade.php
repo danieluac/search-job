@@ -39,12 +39,14 @@
                     
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-bell"></i>
-                                    <span class="rounded badge badge-warning text-white">1</span>
+                        @auth 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('index_inbox')}}">
+                                    <i class="fa fa-comment"></i>
+                                    <span class="rounded badge badge-warning text-white">{{count_unread_sms()}}</span>
                                 </a>
                             </li>
+                        @endauth
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

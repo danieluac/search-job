@@ -22,6 +22,9 @@ function verifica_candidatura($seeker_id, $job_id){
 function count_candidatura($job_id){
     return (OwnerHelpers::job_seekers)::where("job_id", $job_id)->get()->count();
 }
+function count_unread_sms(){
+    return (OwnerHelpers::message)::where("to", auth::user()->id)->where("viewed","0")->get()->count();
+}
 function verifica_selecao($job_seeker_id){
     return (OwnerHelpers::job_seekers)::where("id", $job_seeker_id)->where("status", "selected")->get()->count();
 }

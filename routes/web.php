@@ -55,11 +55,15 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['guest'],
-    'namespace' => 'Auth',
+    'middleware' => ['auth'],
+    'namespace' => 'Messages',
     'prefix' => 'messages'
 ],function(){
-    Route::get('/inbox', "RegisterController@showCompanyRegistrationForm")->name("messages_inbox");
+    Route::get('/inbox', "MessagesCtrl@index_inbox")->name("index_inbox");
+    Route::get('/sent', "MessagesCtrl@index_sent")->name("index_sent");
+    Route::get('/write/{user_id}/{title}', "MessagesCtrl@create")->name("write_message");
+    Route::get('/inbox/view/message/{sms_id}', "MessagesCtrl@view_inbox")->name("view_inbox");
+    Route::post('/store', "MessagesCtrl@store")->name("store_message");
 });
 
 Route::group([

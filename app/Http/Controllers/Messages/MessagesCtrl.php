@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Messages;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use App\Helpers\OwnerHelpers;
+use Session;
+use Auth;
 class MessagesCtrl extends Controller
 {
     /**
@@ -12,9 +14,30 @@ class MessagesCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index_inbox()
     {
-        //
+        $sms = (OwnerHelpers::messages)::where("to",auth::user()->id)->orderBy("sent_date","DESC")->get();       
+        return view("messages.inbox-list",[
+            "sms" => $sms,
+            "active" => "inbox"
+        ]);
+    }
+    public function index_sent()
+    {
+        $sms = (OwnerHelpers::messages)::where("from",auth::user()->id)->orderBy("sent_date","DESC")->get();       
+        return view("messages.inbox-list",[
+            "sms" => $sms,
+            "active" => "sent"
+        ]);
+    }
+    public function view_inbox($sms_id)
+    {
+        $sms = (OwnerHelpers::messages)::where("id",$sms_id)->get()->last();
+        $sms->viewed = "1";
+        $sms->update();
+        return view("messages.inbox-view",[
+            "sms" => $sms,
+        ]);
     }
 
     /**
@@ -22,9 +45,12 @@ class MessagesCtrl extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($user_id, $title)
     {
-        //
+        return view("messages.write",[
+            "user_id" => $user_id,
+            "title" =>  $title,
+        ]);
     }
 
     /**
@@ -35,9 +61,28 @@ class MessagesCtrl extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash("aviso","Alguns campos não preenchidos...");
+        $this->validate($request, [
+            "from_id" => "required",
+            "to_id" => "required",
+            "message" => "required",
+            "title" => "required",
+        ]);
+        $sms = (OwnerHelpers::messages);
+        $sms = new $sms;
+        $sms->from = $request->from_id;
+        $sms->to = $request->to_id;
+        $sms->message = $request->message;
+        $sms->title = $request->title;
+        $sms->sent_date = date("Y-m-d");
+        $sms->viewed = "0";
+        if($sms->save()){
+            Session::flash("sucesso","Enviada com sucesso..");
+            return redirect()->back();
+        }
+        Session::flash("erro","erro ao processar os dados...");
+        return redirect()->back();
     }
-
     /**
      * Display the specified resource.
      *
