@@ -18,7 +18,7 @@
                 <div class="row"> 
                     <div class="col-md-12">
                         <label for="">Assunto:</label>
-                        <input required="" name="title" value="[Candidatura a {{$title}}] - " type="text" class="form-control">
+                        <input required="" name="title" value="{{$title}} " type="text" class="form-control">
                         <input  name="from_id" value="{{auth::user()->id}}" type="hidden" class="form-control">
                         <input name="to_id" value="{{$user_id}}" type="hidden" class="form-control">
                     </div>                   
