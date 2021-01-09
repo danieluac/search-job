@@ -55,6 +55,14 @@ Route::group([
 });
 
 Route::group([
+    'middleware' => ['guest'],
+    'namespace' => 'Auth',
+    'prefix' => 'messages'
+],function(){
+    Route::get('/inbox', "RegisterController@showCompanyRegistrationForm")->name("messages_inbox");
+});
+
+Route::group([
      'middleware' => ['auth'],
      'namespace' => 'Seekers',
     'prefix' => 'seekers'

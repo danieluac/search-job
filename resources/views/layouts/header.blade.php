@@ -36,8 +36,15 @@
                             @endif
                     @endguest
                     </ul>
+                    
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fa fa-bell"></i>
+                                    <span class="rounded badge badge-warning text-white">1</span>
+                                </a>
+                            </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">

@@ -34,11 +34,11 @@
                    
                     <div class="col-md-6 mt-3">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="status" id="status" value="attended">
+                            <input class="form-check-input ckeck-work" type="radio" checked="" name="status" id="status" value="attended">
                             <label class="form-check-label" for="status">Frequentou</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" checked="" name="status" id="status1" value="attending">
+                            <input class="form-check-input ckeck-work" type="radio"  name="status" id="status1" value="attending">
                             <label class="form-check-label" for="status1">Frequentando</label>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                             <label for="">Ano de inicio</label>
                             <input name="issue_year" type="number" max="{{date('Y')}}" required="" class="form-control">
                         </div>
-                        <div class="col-md-6 mt-3">
+                        <div id="end_dateDiv" class="col-md-6 mt-3">
                             <label for="">Ano de fim</label>
                             <input name="end_year" type="number"  class="form-control">
                         </div>
@@ -68,6 +68,14 @@
 @section("scripts")
 
 <script >
- 
+   // $("#end_dateDiv").hide();
+   $(".ckeck-work").click(function(){
+
+if($(this).val() == "attended"){
+    $("#end_dateDiv").show();
+}else if($(this).val() == "attending"){
+    $("#end_dateDiv").hide();
+}
+})
 </script>
 @endsection

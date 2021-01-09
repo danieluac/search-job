@@ -129,7 +129,7 @@
                                     </p>
                                     <p class="m-0"> 
                                         <i class="fa fa-calendar text-white"></i> 
-                                        <small>Luanda, {{$data->start_date}} - {{ $data->end_date}}</small>
+                                        <small>Luanda, {{dateTransform($data->start_date,"/")}} - {{ dateTransform($data->end_date,"/")}}</small>
                                     </p>
                                     <p class="m-0">
                                         &nbsp;&nbsp; <small>{{$data->description}} </small>
@@ -145,7 +145,7 @@
                                     </p>
                                     <p class="m-0"> 
                                         <i class="fa fa-calendar text-white"></i> 
-                                        <small> Desde {{$data->start_date}} - ate agora</small>
+                                        <small> Desde {{dateTransform($data->start_date,"/")}} - ate agora</small>
                                     </p>
                                     <p class="m-0">
                                         &nbsp;&nbsp; <small>{{$data->description}} </small>

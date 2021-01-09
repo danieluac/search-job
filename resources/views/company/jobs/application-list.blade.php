@@ -11,7 +11,7 @@
                             <tr>
                                 <tr>
                                     <th>Nome do candidato</th>
-                                    <th>Curroculo</th>
+                                    <th>Curriculo</th>
                                     <th>#</th>
                                 </tr>
                             </tr>

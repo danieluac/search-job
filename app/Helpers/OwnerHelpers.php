@@ -12,4 +12,6 @@ class OwnerHelpers {
     const jobs = "App\Models\Company\jobs";
     const job_seekers = "App\Models\Company\job_seekers";
     const user = "App\User";
+    const messages = "App\Models\Messages\messages";
+    const message = "App\Models\Messages\messages";
 }
