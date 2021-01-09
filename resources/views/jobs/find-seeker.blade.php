@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section("page_title","Procure por vagas de trabalho")
+@section("page_title","Procure por candidatos")
 @section('content')
 
 <div class="container-fluid p-4">
@@ -39,15 +39,8 @@
                 <div class="col-md-4 mb-3">
                     <div class="card border-1 border-color ">
                         <li class="list-group-item text-white pb-1">
-                            @if($is_company == true)
+                        
                             <p class="m-0 ">  
-                                       <span class="font-lb">{{$data->name}}</span>
-                            </p>
-                            <a href="{{route('find_jobs',[$data->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
-                                                    Ver Vagas
-                                            </a>
-                            @else
-                                <p class="m-0 ">  
                                        <span class="font-lb">{{$data->company->name}}</span>
                                     </p>
                                     <p class="m-0"> 
@@ -78,8 +71,6 @@
                                                     Candidate-se
                                     </a>
                                     @endif
-                                
-                            @endif
                                     
                                                         
                         </li>

@@ -24,7 +24,8 @@ Route::group([
     // 'namespace' => 'Fornecedor',
     'prefix' => 'job'
 ],function(){
-    Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
+    // Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
+    Route::get('/search-for-job/{company_id?}', "Company\JobsCtrl@findJobs")->name("find_jobs");
     Route::post('/search-for-job', "Company\JobsCtrl@search_jobs")->name("search_jobs");
 
     Route::get('/job-details/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
