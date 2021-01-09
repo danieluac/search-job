@@ -92,6 +92,7 @@
                             <hr/>
                             <h4 class="card-section-title">Empregador:</h4>
                             <p>Nome: {{auth::user()->name}}</p>
+                            <p>NIF: {{auth::user()->owner->nif}}</p>
                             <p>Sobre: <br>
                             {{auth::user()->owner->description}}
                             </p>

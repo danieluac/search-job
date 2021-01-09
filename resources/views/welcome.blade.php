@@ -11,8 +11,9 @@
                         </div>
                 </div>
                 </div>
+                @guest
                <div class="row">
-               <div class="col-md-6 " style="margin-bottom:20px">
+                 <div class="col-md-6 " style="margin-bottom:20px">
                     <div class="">
                         <div class=" m-b-md shadow-sm p-3 pl-5 pr-5" style="background: rgba(0,0,0,.4); border-radius:5px">
                             <span> <i class="fa fa-cog text-white"></i></span>
@@ -33,6 +34,7 @@
                 </div>
                 
                </div>
+               @endguest
             </div>
         </div>
         @endsection

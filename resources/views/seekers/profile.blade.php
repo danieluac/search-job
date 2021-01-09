@@ -23,9 +23,13 @@
                     <h4 class="m-0"><strong>{{auth::user()->name}}</strong></h4>
                     <strong> Nascimento </strong><small></small>
                     <p class="m-0"> 
+                    @if( auth::user()->owner->date_birth != null)
                         <small> {{dateTransform(auth::user()->owner->date_birth,"/")}}</small> 
                          &nbsp;&nbsp; ({{(date("Y")-dateTransform(auth::user()->owner->date_birth,"Y"))}})
                         </p>
+                    @else
+                        <p class="m-0"><small>Não definido</small></p>
+                    @endif
 
                     <strong> Email </strong>
                     <p class="m-0"><small> <i class="fa fa-envelope"></i> &nbsp;&nbsp; {{auth::user()->owner->email}} </small> </p>
