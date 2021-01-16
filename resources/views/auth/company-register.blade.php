@@ -5,7 +5,7 @@
 <div class="container pt-5">
     <div class="row justify-content-center">
     <div class="col-md-7 m-auto">
-        <a href="{{ route('company_registration') }}" class="btn btn-app btn-lg ">  Candidato?</a>
+        <a href="{{ route('register') }}" class="btn btn-app btn-lg ">  Candidato?</a>
 
             <div class="card mt-5">                
                 <div class="card-body">

@@ -44,10 +44,10 @@
                                     </p>
                                    <div class="btn-group pull-right">
                                    
-                                   <a href="{{route('seeker_cv',[auth::user()->owner->id])}}" class=" btn btn-outline-primary text-white mb-2 mt-3 ">
+                                   <a href="{{route('seeker_cv',[$data->id])}}" class=" btn btn-outline-primary text-white mb-2 mt-3 ">
                                                     CV
                                             </a>    
-                                    <a href="{{route('write_message',[auth::user()->id,' '])}}" class=" btn btn-outline-warning text-white mb-2 mt-3">
+                                    <a href="{{route('write_message',[$data->id,' '])}}" class=" btn btn-outline-warning text-white mb-2 mt-3">
                                                     sms
                                             </a>   
                                    </div>                     

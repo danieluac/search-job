@@ -35,6 +35,7 @@ class JobsCtrl extends Controller
                 "activities" => (OwnerHelpers::activity)::all(),
                 "jobs" => $activity,
                 "is_company" => false,
+                "user_find_company" => false,
             ]);
         else
             if( OwnerHelpers::company_type != auth::user()->owner_type)
@@ -42,6 +43,7 @@ class JobsCtrl extends Controller
                     "activities" => (OwnerHelpers::activity)::all(),
                     "jobs" => $activity,
                     "is_company" => false,
+                    "user_find_company" => false,
                 ]); 
             else 
                 return view("jobs.find-seeker",[                
@@ -53,6 +55,7 @@ class JobsCtrl extends Controller
     public function search_jobs(Request $request)
     {
         $is_company = false;
+        $user_find_company = false;
         if($request->filter_type == "seeker"){
             $activity = (OwnerHelpers::user)::where("owner_type",OwnerHelpers::seeker_type)
             ->Where("name","like", "%". $request->text_filter."%")
@@ -65,22 +68,34 @@ class JobsCtrl extends Controller
             ->inRandomOrder()->limit(20)->get();
             
             
+            if($request->filter_type == "seeker"){
+                if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
+                    $activity = (OwnerHelpers::jobs)::where("state",0)
+                        ->where("end_date",">", date("Y-m-d"))
+                        ->Where("job_title","like", "%". $request->text_filter."%")
+                        ->inRandomOrder()->limit(20)->get();
+            }else
             if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
-            $activity = (OwnerHelpers::jobs)::where("state",0)
-            ->where("end_date",">", date("Y-m-d"))
-            ->Where("job_title","like", "%". $request->text_filter."%")
-            ->inRandomOrder()->limit(20)->get();
+            {
+                $activity = (OwnerHelpers::user)::where("owner_type",OwnerHelpers::company_type)
+                ->Where("name","like", "%". $request->text_filter."%")
+                ->inRandomOrder()->limit(20)->get();
+                $user_find_company = true;
+            }
+
             
         }
+        // dd($activity);
         if($is_company != true)
             return view("jobs.find-job",[
                 "activities" => (OwnerHelpers::activity)::all(),
                 "jobs" => $activity,
                 "is_company" => $is_company,
+                "user_find_company" => $user_find_company,
                 ]);
         else
             return view("jobs.find-seeker",[                
-                "seeker" => $activity,
+                "seeker" => $activity,               
             ]);
     }
     public function seekerIndexJobsById($job_id){

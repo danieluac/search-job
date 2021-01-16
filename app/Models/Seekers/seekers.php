@@ -11,7 +11,6 @@ class seekers extends Model
 {
     protected $fillable = ["email"];
     //
-
     public function expirience(){
         return $this->hasMany(expiriences::class,'seeker_id');
     }
