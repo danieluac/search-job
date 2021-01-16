@@ -42,12 +42,15 @@
                                     <p class="m-0"> 
                                         Nivel :  <span class="font-lb">{{$data->owner->qualification[0]->degree->name}}</span>
                                     </p>
-                                    <a href="{{route('seeker_cv',[auth::user()->owner->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                   <div class="btn-group pull-right">
+                                   
+                                   <a href="{{route('seeker_cv',[auth::user()->owner->id])}}" class=" btn btn-outline-primary text-white mb-2 mt-3 ">
                                                     CV
                                             </a>    
-                                    <a href="{{route('write_messageE',[auth::user()->id,' '])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                    <a href="{{route('write_message',[auth::user()->id,' '])}}" class=" btn btn-outline-warning text-white mb-2 mt-3">
                                                     sms
-                                            </a>                        
+                                            </a>   
+                                   </div>                     
                                     
                                                         
                         </li>

@@ -17,16 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
+Route::get('/job/search-for-job/{company_id?}', "Company\JobsCtrl@findJobs")->name("find_jobs");
+Route::post('/job/search-for-job', "Company\JobsCtrl@search_jobs")->name("search_jobs");
 Route::group([
-    // 'middleware' => ['guest'],
-    // 'namespace' => 'Fornecedor',
+    'middleware' => ['auth'],
     'prefix' => 'job'
 ],function(){
     // Route::get('/search-for-job', "Company\JobsCtrl@findJobs")->name("find_jobs");
-    Route::get('/search-for-job/{company_id?}', "Company\JobsCtrl@findJobs")->name("find_jobs");
-    Route::post('/search-for-job', "Company\JobsCtrl@search_jobs")->name("search_jobs");
+    
 
     Route::get('/job-details/{job_id}', "Company\JobsCtrl@seekerIndexJobsById")->name("seekerIndexJobsById");
     Route::get('/application-list/{job_id}', "Company\JobsCtrl@application_list")->name("application_list");

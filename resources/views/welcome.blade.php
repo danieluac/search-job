@@ -7,7 +7,18 @@
                 <div class=" col-md-12  mb-5">
                 
                 <div class=" p-3 pl-5 pr-5" style="background: none; border-radius:5px">
-                            <a href="{{ route('find_jobs') }}" class="btn btn-success btn-lg p-2"> <i class="fa fa-search"></i> Encontre oportunidades de trabalho</a>
+                            <a href="{{ route('find_jobs') }}" class="btn btn-success btn-lg p-2"> <i class="fa fa-search"></i> 
+                           @auth
+                            @if(is_company())
+                                    Encontre supostos candidatos
+                                @else
+                                    Encontre oportunidades de trabalho
+                                @endif
+                           @endauth
+                            @guest
+                                Encontre oportunidades de trabalho
+                            @endguest
+                            </a>
                         </div>
                 </div>
                 </div>

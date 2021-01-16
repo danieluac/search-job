@@ -35,7 +35,7 @@
                                 @enderror
                             </div>
                         </div>
-
+<!--
                         <div class="form-group">
                             <div class="col-md-12">
                                 <div class="form-check">
@@ -46,7 +46,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group">
                             <div class="col-md-12">
@@ -54,11 +54,13 @@
                                     {{ __('Login') }}
                                 </button>                               
                             </div>
+                            <!--
                             @if (Route::has('password.request'))
                                     <a class="btn btn-link text-white " href="{{ route('password.request') }}">
                                         {{ __('Esqueceu a senha?') }}
                                     </a>
                                 @endif
+                                -->
                         </div>
                     </form>
                 </div>

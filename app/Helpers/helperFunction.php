@@ -28,3 +28,10 @@ function count_unread_sms(){
 function verifica_selecao($job_seeker_id){
     return (OwnerHelpers::job_seekers)::where("id", $job_seeker_id)->where("status", "selected")->get()->count();
 }
+function is_company(){
+
+    if(auth::user()->owner_type == OwnerHelpers::company_type)
+        return true;
+    else 
+        return false;
+}

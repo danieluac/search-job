@@ -10,7 +10,7 @@ use Auth;
 class JobsCtrl extends Controller
 {
     public function __construct(){
-        $this->middleware("auth")->except('findJobs');
+        $this->middleware("auth")->except(['findJobs',"search_jobs"]);
     }
     /**
      * Display a listing of the resource.
@@ -19,6 +19,7 @@ class JobsCtrl extends Controller
      */
     public function findJobs($company_id = 0)
     {
+       
         if( $company_id != 0){
             $activity = (OwnerHelpers::jobs)::where("state",0)
                 ->where("company_id","=",$company_id)
@@ -28,18 +29,27 @@ class JobsCtrl extends Controller
             $activity = (OwnerHelpers::jobs)::where("state",0)
                 ->where("end_date",">", date("Y-m-d"))
                 ->inRandomOrder()->limit(12)->get();
-
-        if(OwnerHelpers::company_type != auth::user()->owner_type)
+        
+        if(!auth::check())
             return view("jobs.find-job",[
                 "activities" => (OwnerHelpers::activity)::all(),
                 "jobs" => $activity,
                 "is_company" => false,
             ]);
-        else 
-            return view("jobs.find-seeker",[                
-                "seeker" => [],
-            ]);
+        else
+            if( OwnerHelpers::company_type != auth::user()->owner_type)
+                return view("jobs.find-job",[
+                    "activities" => (OwnerHelpers::activity)::all(),
+                    "jobs" => $activity,
+                    "is_company" => false,
+                ]); 
+            else 
+                return view("jobs.find-seeker",[                
+                    "seeker" => [],
+                ]);
+            
     }
+    
     public function search_jobs(Request $request)
     {
         $is_company = false;

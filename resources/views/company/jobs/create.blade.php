@@ -25,7 +25,7 @@
                     </div>                                     
                     <div class="col-md-6 mt-3">
                             <label class="" for="status">Número de vagas</label>
-                            <input required=""  name="job_number" value="{{old('job_number')}}" type="number" class="form-control" />
+                            <input required=""  name="job_number" min="1" value="{{old('job_number')}}" type="number" class="form-control" />
                             <input name="company_id" value="{{auth()->user()->owner_id}}" type="hidden" class="form-control" />                       
                     </div>
                     <div class="col-md-6 mt-3">
