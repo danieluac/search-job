@@ -32,7 +32,7 @@
                         </div>
                     </div>
                         <div class="col-md-12 mt-3">
-                            <label for="">Lugar de aquisiçãi</label>
+                            <label for="">Lugar de aquisição</label>
                             <input name="acquisition_place" type="text" class="form-control">
                         </div>
                     <div class="col-md-12">

@@ -8,7 +8,7 @@
    <div class="card">
         <div class="card-header">
             <p class="text-center m-0">
-                <strong>Publique sua vaga</strong>
+                <strong>Editar dados Pessoais</strong>
             </p>            
         </div>
         <div class="card-body">

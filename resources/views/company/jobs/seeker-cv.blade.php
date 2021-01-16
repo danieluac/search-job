@@ -11,7 +11,7 @@
        <div class="col-md-12 job_card">
             <div class="card col-md-10 p-0 mb-4 m-auto border-0 ">
                 <div class="card-body text-white bg-white border-none p-1 pt-1">
-                    <a href="{{url('')}}" class="btn pull-left m-0 p-1">
+                    <a href="{{ URL::previous() }}" class="btn pull-left m-0 p-1">
                         <i class="fa fa-arrow-left text-white rounded-circle bg-info p-3"></i>
                     </a>
                     <a href="#" class="btn pull-right m-0 p-1" onclick='printBy("#printable")'>
