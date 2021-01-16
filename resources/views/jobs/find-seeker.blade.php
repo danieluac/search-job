@@ -37,14 +37,14 @@
                                        <span class="font-lb">{{$data->name}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Formação em :  <span class="font-lb">{{$data->owner->qualification[0]->course}}</span>
+                                        Formação em :  <span class="font-lb">{{$data->owner->qualification[0]->course??''}}</span>
                                     </p>
                                     <p class="m-0"> 
-                                        Nivel :  <span class="font-lb">{{$data->owner->qualification[0]->degree->name}}</span>
+                                        Nivel :  <span class="font-lb">{{$data->owner->qualification[0]->degree->name??''}}</span>
                                     </p>
                                    <div class="btn-group pull-right">
                                    
-                                   <a href="{{route('seeker_cv',[$data->id])}}" class=" btn btn-outline-primary text-white mb-2 mt-3 ">
+                                   <a href="{{route('seeker_cv',[$data->owner->id])}}" class=" btn btn-outline-primary text-white mb-2 mt-3 ">
                                                     CV
                                             </a>    
                                     <a href="{{route('write_message',[$data->id,' '])}}" class=" btn btn-outline-warning text-white mb-2 mt-3">

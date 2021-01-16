@@ -39,16 +39,16 @@
 
                     <div class="px-5" id="printable">
                             <h4 class="  text-center mt-3 mx-auto text-dark ">
-                                <span class="font-lb m-0 text-uppercase "> {{ $seeker->user[0]->name}}</span> <br>
-                                    <small class="fz-14 m-0 font-lb" >Nascido aos {{ dateTransform($seeker->date_birth,"/")}} ({{ (date("Y")-dateTransform($seeker->date_birth,"Y"))}})</small> 
+                                <span class="font-lb m-0 text-uppercase "> {{ $seeker->user[0]->name??""}}</span> <br>
+                                    <small class="fz-14 m-0 font-lb" >Nascido aos {{ dateTransform($seeker->date_birth??'',"/")}} ({{ (date("Y")-dateTransform($seeker->date_birth??'',"Y"))}})</small> 
                                     <br>
                                     <small class="fz-14 m-0 font-lb">  
-                                    <i class="fa fa-envelope text-black"></i>  {{ $seeker->email}} - &nbsp; &nbsp; &nbsp; 
-                                    <i class="fa fa-phone text-black"></i>  (+244) {{ $seeker->telephone}}</small>
+                                    <i class="fa fa-envelope text-black"></i>  {{ $seeker->email??}} - &nbsp; &nbsp; &nbsp; 
+                                    <i class="fa fa-phone text-black"></i>  (+244) {{ $seeker->telephone??}}</small>
                             </h4>
                             <hr>
                         <p class="text-dark">
-                        {{ $seeker->description}}
+                        {{ $seeker->description??}}
                         </p>
                         <br>
                         <h6 class="text-uppercase text-dark font-lb">Educação</h6>
