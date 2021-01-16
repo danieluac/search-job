@@ -23,16 +23,16 @@
                     <div class="col-md-12 mt-3">
                         <label >Forma adquirida</label> <br>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="acquisition_option" id="acquisition_option" value="autodidact">
+                            <input class="form-check-input ckeck-work" type="radio" name="acquisition_option" id="acquisition_option" value="autodidact">
                             <label class="form-check-label" for="acquisition_option">Autodidacta</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" checked="" name="acquisition_option" id="acquisition_option1" value="institute">
+                            <input class="form-check-input ckeck-work" type="radio" checked="" name="acquisition_option" id="acquisition_option1" value="institute">
                             <label class="form-check-label" for="acquisition_option1">Instituição</label>
                         </div>
                     </div>
-                        <div class="col-md-12 mt-3">
-                            <label for="">Lugar de aquisição</label>
+                        <div id="end_dateDiv" class="col-md-12 mt-3">
+                            <label for="">Local de aquisição</label>
                             <input name="acquisition_place" type="text" class="form-control">
                         </div>
                     <div class="col-md-12">
@@ -55,8 +55,15 @@
 @endsection
 
 @section("scripts")
-
 <script >
- 
+     $("#end_dateDiv").show();
+ $(".ckeck-work").click(function(){
+
+    if($(this).val() == "institute"){
+        $("#end_dateDiv").show();
+    }else if($(this).val() == "autodidact"){
+        $("#end_dateDiv").hide();
+    }
+ })
 </script>
 @endsection
