@@ -22,7 +22,7 @@
                         </div>
                 </div>
 
-                    <div  class="my-5 text-center col-12 bg-secondary rounded p-2 ">
+                    <div  class="my-5 text-center col-12 bg-dark rounded p-2 ">
                     <marquee behavior="slide" direction="left">
                         <h2 class="text-center  text-white">Procura-se emprego e funcionário - (PEF)</h2>
                     </marquee>

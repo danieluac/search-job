@@ -134,7 +134,17 @@ class JobsCtrl extends Controller
         if(Auth::user()->owner_type == OwnerHelpers::company_type and isset($job_seeker)){ 
             $job_seeker->status = "selected";
             if($job_seeker->save()){     
-                Session::flash("sucesso","Candidato selecionado...");                    
+                Session::flash("sucesso","Candidato selecionado...");
+                $seeker =  (OwnerHelpers::seeker_type)::find($job_seeker->seeker_id);
+                $sms = (OwnerHelpers::messages);
+                $sms = new $sms;
+                $sms->from = $seeker->user[0]->id;
+                $sms->to =  $seeker->user[0]->id;
+                $sms->message = "A empresa ".auth::user()->name." está analisando o seu perfil, aproveita e personalize-o";
+                $sms->title = "revisão do perfil";
+                $sms->sent_date = date("Y-m-d");
+                $sms->viewed = "0";
+                $sms->save();                  
             }else 
                 Session::flash("erro","Não possível selecionar o Candidato...");   
         }else 

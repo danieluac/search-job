@@ -43,12 +43,12 @@
                                     <small class="fz-14 m-0 font-lb" >Nascido aos {{ dateTransform($seeker->date_birth??'',"/")}} ({{ (date("Y")-dateTransform($seeker->date_birth??'',"Y"))}})</small> 
                                     <br>
                                     <small class="fz-14 m-0 font-lb">  
-                                    <i class="fa fa-envelope text-black"></i>  {{ $seeker->email??}} - &nbsp; &nbsp; &nbsp; 
-                                    <i class="fa fa-phone text-black"></i>  (+244) {{ $seeker->telephone??}}</small>
+                                    <i class="fa fa-envelope text-black"></i>  {{ $seeker->email??""}} - &nbsp; &nbsp; &nbsp; 
+                                    <i class="fa fa-phone text-black"></i>  (+244) {{ $seeker->telephone??""}}</small>
                             </h4>
                             <hr>
                         <p class="text-dark">
-                        {{ $seeker->description??}}
+                        {{ $seeker->description??""}}
                         </p>
                         <br>
                         <h6 class="text-uppercase text-dark font-lb">Educação</h6>
@@ -82,7 +82,7 @@
                                 @endif
                             </li>
                         @endforeach
-                        <h6 class="text-uppercase text-dark font-lb">Compotências</h6>
+                        <h6 class="text-uppercase text-dark font-lb">Competências</h6>
                         <hr>
                         @foreach($seeker->skill as $data)
                             <li class="list-group-item">

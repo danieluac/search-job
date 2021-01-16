@@ -17,7 +17,11 @@
                     @else
                         <a href="#" class="btn p-0 pl-2 pr-2 m-0 btn-info pull-right disabled">
                             <i class="fa fa-share"></i>
-                                                Enviado                           
+                            @if( $sms->sent_to->id == $sms->sent_from->id )
+                              Não Responder
+                            @else
+                                                Enviado   
+                            @endif                        
                         </a>
                     @endif
                        
@@ -27,13 +31,18 @@
                     <div>     
                     <p class="m-0 p-0">
                       <small>
+                       @if( $sms->sent_to->id == $sms->sent_from->id )
+                        De: PEF - System <br>
+                        Para: {{$sms->sent_to->name}} - {{$sms->sent_from->email}}
+                       @else
                         De: {{$sms->sent_from->name}} - {{$sms->sent_from->email}} <br>
                         Para: {{$sms->sent_to->name}} - {{$sms->sent_from->email}}
+                       @endif
                       </small>
                     </p>
                     <hr>                                                     
                     <div class="drecription">
-                            {!! $sms->message !!}
+                            {!! $sms->message !!}.
                     </div>
                     </div>
                     <form id="responseForm" class="mt-5" action="{{route('store_message')}}" method="post" >
