@@ -51,7 +51,7 @@
                                     <p class="m-0 ">  
                                        <span class="font-lb">{{$data->name}}</span>
                                     </p>
-                                    <a href="{{route('find_jobs',[$data->id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                    <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
                                                             Ver Vagas
                                             </a>
                                 @else
