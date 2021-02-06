@@ -39,6 +39,27 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @foreach($job_seeker1 as $data)
+                                <tr>
+                                    <td> {{$data->seeker->user[0]->name}}</td>                                   
+                                    <td>
+                                    <a href="{{route('seeker_cv',[$data->seeker->id,$data->id])}}" class="border-0 btn btn-primary">
+                                        <i class="fa fa-eye"></i> Ver CV</a>
+                                        
+                                    </td>
+                                    <td> 
+                                        <a href="{{route('write_message',[$data->seeker->user[0]->id,$data->job->job_title])}}" class="border-0 btn btn-primary">
+                                            <i class="fa fa-envelope"></i></a>
+                                    </td>      
+                                    <td>
+                                        @if($data->status == "selected")
+                                            <span class="badge-success p-2 rounded"> {{$data->status}}</span>
+                                        @else 
+                                            <span class="badge-info p-2 rounded"> {{$data->status}}</span>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                 </table>
         </div>

@@ -250,10 +250,33 @@ class JobsCtrl extends Controller
 
     }
     public function application_list($job_id){
+        $jobs_activity = (OwnerHelpers::jobs)::where("id", $job_id)->first()->activity_id;
+        
         $job_seeker = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->get();  
+        $seeker = [];
+        $seeker1 = [];
+        foreach($job_seeker  as $job){
+            $found = false;
+            foreach($job->seeker->qualification as $qualification){
+                if($found == false  and $qualification->activity_id == $jobs_activity){
+                    $seeker[] = $job->seeker_id;
+                    $found = true;
+                    break;
+                }
+            }
+        }
+        foreach($job_seeker  as $job){
+            if(!in_array($job->seeker_id, $seeker))
+                $seeker1[] = $job->seeker_id;            
+        }
+        
+        $job_seeker = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->whereIn("seeker_id",$seeker)->get(); 
+        $job_seeker1 = (OwnerHelpers::job_seekers)::where("job_id", $job_id)->whereIn("seeker_id",$seeker1)->get(); 
+        
       
         return view("company.jobs.application-list",[
             "job_seeker" => $job_seeker,
+            "job_seeker1" => $job_seeker1,
         ]);
 
     }
