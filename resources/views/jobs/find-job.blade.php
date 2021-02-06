@@ -41,17 +41,23 @@
                         <li class="list-group-item text-white pb-1">
                             @if($is_company == true)
                             <p class="m-0 ">  
+                            @if(isset($data->foto) and $data->foto != null)
+                                    <img id='imgFotoP' src="{{url($data->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                @endif 
                                        <span class="font-lb">{{$data->name}}</span>
                             </p>
-                            <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                            <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-left">
                                                     Ver Vagas
                                             </a>
                             @else
                                  @if( $user_find_company)
                                     <p class="m-0 ">  
+                                    @if(isset($data->foto) and $data->foto != null)
+                                    <img id='imgFotoP' src="{{url($data->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                @endif
                                        <span class="font-lb">{{$data->name}}</span>
                                     </p>
-                                    <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                    <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-left">
                                                             Ver Vagas
                                             </a>
                                 @else
@@ -106,7 +112,10 @@
                     <div class="card border-1 border-color ">
                         <li class="list-group-item text-white pb-1">
                             @if($is_company == true)
-                            <p class="m-0 ">  
+                            <p class="m-0 "> 
+                            @if(isset($data->foto) and $data->foto != null)
+                                    <img id='imgFotoP' src="{{url($data->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                @endif 
                                        <span class="font-lb">{{$data->name}}</span>
                             </p>
                             <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
@@ -115,9 +124,12 @@
                             @else
                                  @if( $user_find_company)
                                     <p class="m-0 ">  
+                                    @if(isset($data->foto) and $data->foto != null)
+                                        <img id='imgFotoP' src="{{url($data->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                    @endif
                                        <span class="font-lb">{{$data->name}}</span>
                                     </p>
-                                    <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-right">
+                                    <a href="{{route('find_jobs',[$data->owner_id])}}" class=" btn btn-info mb-2 mt-3 pull-left">
                                                             Ver Vagas
                                             </a>
                                 @else

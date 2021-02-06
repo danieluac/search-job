@@ -34,6 +34,9 @@
                         <li class="list-group-item text-white pb-1">
                         
                             <p class="m-0 ">  
+                            @if(isset($data->foto) and $data->foto != null)
+                                    <img id='imgFotoP' src="{{url($data->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                @endif 
                                        <span class="font-lb">{{$data->name}}</span>
                                     </p>
                                     <p class="m-0"> 
