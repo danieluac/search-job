@@ -64,8 +64,9 @@
                             Titulo Academico : <small class="pl-3">{{$job->degree->name}}</small> 
                     </h6>                                           
                     <div class="drecription">
-                            {!! $job->job_description !!}
+                            {!! str_replace("../","/",$job->job_description) !!}
                     </div>
+                    
                     </div>
                 </div>
             </div> 

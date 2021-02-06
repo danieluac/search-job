@@ -90,12 +90,17 @@
                             </ul>
                             <p>&nbsp;</p>
                             <hr/>
+                            @if(isset(auth::user()->foto) and auth::user()->foto != null)
+                                <img id='imgFotoP' src="{{url(auth::user()->foto)}}" style="width:150px;height:150px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                            @endif 
                             <h4 class="card-section-title">Empregador:</h4>
+                            
                             <p>Nome: {{auth::user()->name}}</p>
                             <p>NIF: {{auth::user()->owner->nif}}</p>
                             <p>Sobre: <br>
                             {{auth::user()->owner->description}}
                             </p>
+                            
                         </textarea>
                     </div>
                     <div class="col-12 mt-3">

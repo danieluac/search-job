@@ -98,3 +98,5 @@ Route::POST('/expirience/destroy/{id}', "ExpiriencesCtrl@destroy")->name("expiri
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/add-foto', 'HomeController@addFoto')->name('addFoto');
+Route::post('/add-foto', 'HomeController@storeFoto')->name('storeFoto');

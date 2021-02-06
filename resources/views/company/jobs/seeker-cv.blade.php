@@ -38,7 +38,11 @@
                    @endif 
 
                     <div class="px-5" id="printable">
-                            <h4 class="  text-center mt-3 mx-auto text-dark ">
+                        <div class="row">
+                       
+                        <div class="col-8">
+                           
+                           <h4 class="  text-left mt-3 mx-auto text-dark ">
                                 <span class="font-lb m-0 text-uppercase "> {{ $seeker->user[0]->name??""}}</span> <br>
                                     <small class="fz-14 m-0 font-lb" >Nascido aos {{ dateTransform($seeker->date_birth??'',"/")}} ({{ (date("Y")-dateTransform($seeker->date_birth??'',"Y"))}})</small> 
                                     <br>
@@ -46,7 +50,15 @@
                                     <i class="fa fa-envelope text-black"></i>  {{ $seeker->email??""}} - &nbsp; &nbsp; &nbsp; 
                                     <i class="fa fa-phone text-black"></i>  (+244) {{ $seeker->telephone??""}}</small>
                             </h4>
+                        </div>
+                        <div class="col-4 pt-3 text-right">
+                            @if(isset($seeker->user[0]->foto) and $seeker->user[0]->foto != null)
+                                <img id='imgFotoP' src="{{url($seeker->user[0]->foto)}}" style="width:150px;height:150px;border-radius: 10px;" class="mb-3" alt=""/>
+                            @endif
+                        </div>
+                        </div>
                             <hr>
+
                         <p class="text-dark">
                         {{ $seeker->description??""}}
                         </p>

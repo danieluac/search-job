@@ -55,7 +55,10 @@
                                                             Ver Vagas
                                             </a>
                                 @else
-                                <p class="m-0 ">  
+                                <p class="m-0 "> 
+                                @if(isset($data->company->user[0]->foto) and $data->company->user[0]->foto != null)
+                                    <img id='imgFotoP' src="{{url($data->company->user[0]->foto)}}" style="width:70px;height:70px;border-radius: 10px;float:right" class="mb-3" alt=""/>
+                                @endif 
                                         <span class="font-lb">{{$data->company->name}}</span>
                                         </p>
                                         <p class="m-0"> 
