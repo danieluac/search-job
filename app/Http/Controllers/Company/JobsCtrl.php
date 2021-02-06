@@ -20,20 +20,54 @@ class JobsCtrl extends Controller
     public function findJobs($company_id = 0)
     {
        
-        if( $company_id != 0){
+        if( $company_id != 0 and auth::check()){
+            $user_activity = [];
+            foreach(auth::user()->owner->qualification as $data){
+                $user_activity[] = $data->activity_id;
+            }
+            $activity1 = (OwnerHelpers::jobs)::where("state",0)
+                    ->where("company_id","=",$company_id)
+                    ->where("end_date",">", date("Y-m-d"))                    
+                    ->where("show_by_activity", "0")
+                    ->inRandomOrder()->limit(12)->get();
+            $activity = (OwnerHelpers::jobs)::where("state",0)
+                ->where("company_id","=",$company_id)
+                ->where("end_date",">", date("Y-m-d"))
+                ->whereIn("activity_id", $user_activity)
+                ->inRandomOrder()->limit(12)->get();
+        }else if( $company_id != 0 and !auth::check()){            
             $activity = (OwnerHelpers::jobs)::where("state",0)
                 ->where("company_id","=",$company_id)
                 ->where("end_date",">", date("Y-m-d"))
                 ->inRandomOrder()->limit(12)->get();
-        }else
-            $activity = (OwnerHelpers::jobs)::where("state",0)
-                ->where("end_date",">", date("Y-m-d"))
-                ->inRandomOrder()->limit(12)->get();
+        }else{
+
+            if(auth::check() and OwnerHelpers::company_type != auth::user()->owner_type){
+                $user_activity = [];
+                foreach(auth::user()->owner->qualification as $data){
+                    $user_activity[] = $data->activity_id;
+                }
+                $activity = (OwnerHelpers::jobs)::where("state",0)
+                    ->where("end_date",">", date("Y-m-d"))
+                    ->whereIn("activity_id", $user_activity)
+                    ->inRandomOrder()->limit(12)->get();
+                $activity1 = (OwnerHelpers::jobs)::where("state",0)
+                    ->where("end_date",">", date("Y-m-d"))
+                    ->where("show_by_activity", "0")
+                    ->inRandomOrder()->limit(12)->get();
+            }                
+            else
+                $activity = (OwnerHelpers::jobs)::where("state",0)
+                    ->where("end_date",">", date("Y-m-d"))
+                    ->inRandomOrder()->limit(12)->get();
+        }
+            
         
         if(!auth::check())
             return view("jobs.find-job",[
                 "activities" => (OwnerHelpers::activity)::all(),
                 "jobs" => $activity,
+                "jobs1" => [],
                 "is_company" => false,
                 "user_find_company" => false,
             ]);
@@ -42,6 +76,7 @@ class JobsCtrl extends Controller
                 return view("jobs.find-job",[
                     "activities" => (OwnerHelpers::activity)::all(),
                     "jobs" => $activity,
+                    "jobs1" => $activity1,
                     "is_company" => false,
                     "user_find_company" => false,
                 ]); 
@@ -63,27 +98,63 @@ class JobsCtrl extends Controller
             $is_company = true;
         }else{
             $user_activity = [];
-            
-            $activity = (OwnerHelpers::jobs)::where("state",0)
-            ->where("end_date",">", date("Y-m-d"))
-            ->where("activity_id", $request->activity_id)
-            ->inRandomOrder()->limit(20)->get();
-            
-            
-            if($request->filter_type == "seeker"){
-                if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
-                    $activity = (OwnerHelpers::jobs)::where("state",0)
-                        ->where("end_date",">", date("Y-m-d"))
-                        ->Where("job_title","like", "%". $request->text_filter."%")
-                        ->inRandomOrder()->limit(20)->get();
-            }else
-            if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
-            {
-                $activity = (OwnerHelpers::user)::where("owner_type",OwnerHelpers::company_type)
-                ->Where("name","like", "%". $request->text_filter."%")
+            if(auth::check()){
+                foreach(auth::user()->owner->qualification as $data)
+                    $user_activity[] = $data->activity_id;
+
+                $activity = (OwnerHelpers::jobs)::where("state",0)
+                ->where("end_date",">", date("Y-m-d"))
+                ->where("activity_id", $request->activity_id)
+                ->whereIn("activity_id", $user_activity)
+                ->where("show_by_activity", '1')
                 ->inRandomOrder()->limit(20)->get();
-                $user_find_company = true;
+                $activity1 = (OwnerHelpers::jobs)::where("state",0)
+                ->where("end_date",">", date("Y-m-d"))
+                ->where("activity_id", $request->activity_id)
+                ->where("show_by_activity", '0')
+                ->inRandomOrder()->limit(20)->get();
+
             }
+            else{
+                $activity1 =[];
+                $activity = (OwnerHelpers::jobs)::where("state",0)
+                ->where("end_date",">", date("Y-m-d"))
+                ->where("activity_id", $request->activity_id)
+                ->inRandomOrder()->limit(20)->get();
+            }
+            
+            if($request->filter_type != "seeker"){
+                    if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
+                    {
+                       if(auth::check()){
+                            $activity = (OwnerHelpers::jobs)::where("state",0)
+                            ->where("end_date",">", date("Y-m-d"))
+                            ->Where("job_title","like", "%". $request->text_filter."%")
+                            ->whereIn("activity_id", $user_activity)
+                            ->where("show_by_activity", '1')
+                            ->inRandomOrder()->limit(20)->get();
+                            $activity1 = (OwnerHelpers::jobs)::where("state",0)
+                            ->where("end_date",">", date("Y-m-d"))
+                            ->Where("job_title","like", "%". $request->text_filter."%")
+                            ->where("show_by_activity", '0')
+                            ->inRandomOrder()->limit(20)->get();
+                       }else{
+                            $activity = (OwnerHelpers::jobs)::where("state",0)
+                            ->where("end_date",">", date("Y-m-d"))
+                            ->Where("job_title","like", "%". $request->text_filter."%")
+                            ->inRandomOrder()->limit(20)->get();
+                       }
+                    }
+            }
+
+            
+                if(!isset($activity[0]) and $request->text_filter != '' and $request->text_filter != " ")
+                {
+                    $activity = (OwnerHelpers::user)::where("owner_type",OwnerHelpers::company_type)
+                    ->Where("name","like", "%". $request->text_filter."%")
+                    ->inRandomOrder()->limit(20)->get();
+                    $user_find_company = true;
+                }
 
             
         }
@@ -92,6 +163,7 @@ class JobsCtrl extends Controller
             return view("jobs.find-job",[
                 "activities" => (OwnerHelpers::activity)::all(),
                 "jobs" => $activity,
+                "jobs1" => $activity1,
                 "is_company" => $is_company,
                 "user_find_company" => $user_find_company,
                 ]);
