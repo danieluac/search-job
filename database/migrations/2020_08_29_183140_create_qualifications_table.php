@@ -22,6 +22,7 @@ class CreateQualificationsTable extends Migration
             $table->year("issue_year")->nullable();
             $table->year("end_year")->nullable();
             $table->enum("status",['attending','attended'])->nullable();
+            $table->foreignId('activity_id')->constrained("activities")->onDelete("cascade");
             $table->timestamps();
 
         });

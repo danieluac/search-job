@@ -62,6 +62,8 @@ class JobsCtrl extends Controller
             ->inRandomOrder()->limit(20)->get();
             $is_company = true;
         }else{
+            $user_activity = [];
+            
             $activity = (OwnerHelpers::jobs)::where("state",0)
             ->where("end_date",">", date("Y-m-d"))
             ->where("activity_id", $request->activity_id)
@@ -267,6 +269,7 @@ class JobsCtrl extends Controller
             "company_id" => "required|integer",
             "job_location" => "required|string",
             "job_description" => "required|string",
+            "show_by_activity" => "required",
         ]);
             $job = OwnerHelpers::jobs;
             $jobs = new $job();
@@ -279,6 +282,7 @@ class JobsCtrl extends Controller
             $jobs->job_location =  $request->job_location;
             $jobs->company_id = $request->company_id;
             $jobs->job_description = $request->job_description;
+            $jobs->show_by_activity = $request->show_by_activity;
         if($jobs->save()){
             Session::flash("sucesso","A sua vaga foi publicada");
            return redirect()->back(); 

@@ -50,6 +50,15 @@
                             <label for="">Ano de fim</label>
                             <input name="end_year" type="number" min="1975" max="{{date('Y')+10}}"  class="form-control">
                         </div>
+                        <div class="col-md-12">
+                        <label for="activity_id">Área de aplicação</label>
+                        <select class="form-control" name="activity_id" id="activity_id" required="">
+                            <option value="" selected disabled>Selecione: </option>
+                           @foreach($activities as $activity)
+                           <option value="{{$activity->id}}">{{$activity->name}}</option>
+                           @endforeach
+                        </select>
+                    </div>
                     <div class="col-12 mt-3">
                         <button class="btn btn-primary pull-right"> 
                         <i class="fa fa-plus-circle"></i> Guardar

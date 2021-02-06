@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Seekers\qualifications;
 use App\Models\Seekers\degrees;
+
+use App\Helpers\OwnerHelpers;
 use auth;
 
 
@@ -19,7 +21,7 @@ class QualificationsCtrl extends Controller
      */
     public function create()
     {
-        return view("seekers.qualifications.create",['degrees' => degrees::all()]);
+        return view("seekers.qualifications.create",['degrees' => degrees::all(), "activities" => (OwnerHelpers::activity)::all()]);
     }
 
     /**
@@ -33,7 +35,7 @@ class QualificationsCtrl extends Controller
         $this->validate($request,[
             "course" => ["required"],
             "place_degree" => ["required"],
-            "degree_id" => ["required"],
+            "activity_id" => ["required"],
             "issue_year" => ["required"],
             "status" => ["required"],
         ]);
@@ -44,6 +46,7 @@ class QualificationsCtrl extends Controller
          $qualifications->end_year = $request->end_year;
          $qualifications->status = $request->status;
          $qualifications->degree_id = $request->degree_id;
+         $qualifications->activity_id = $request->activity_id;
          $qualifications->seeker_id = auth::user()->owner->id;
          $qualifications->save();
         

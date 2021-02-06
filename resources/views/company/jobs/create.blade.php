@@ -54,6 +54,17 @@
                         <label for="">Municipio/Provincia de Localidade</label>
                         <input required="" name="job_location" value="{{old('job_location')}}" type="text" class="form-control">
                     </div>   
+                    <div class="col-md-12 my-3">
+                        <p for="show_by_activity">Restringir candidatura por área de actividade?</p>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="show_by_activity" value="0"id="inlineRadio1" checked="" type="radio">
+                          <label class="form-check-label" for="inlineRadio1">Não</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" name="show_by_activity" id="inlineRadio2" value="1" type="radio">
+                          <label class="form-check-label" for="inlineRadio2">Sim</label>
+                        </div>
+                    </div>   
                     <div class="col-md-12">
                         <label for="">Descrição</label>
                         <textarea id="editor" required="" name="job_description" value="{{old('job_description')}}" type="text" class="form-control">

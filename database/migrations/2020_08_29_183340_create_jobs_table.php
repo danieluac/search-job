@@ -16,6 +16,7 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string("job_title");
+            $table->enum("show_by_activity",['0','1']);
             $table->string("job_location")->nullable();
             $table->text("job_description")->nullable();
             $table->date("end_date")->nullable();
