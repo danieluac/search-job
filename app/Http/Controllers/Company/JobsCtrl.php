@@ -174,28 +174,33 @@ class JobsCtrl extends Controller
     }
     public function seekerIndexJobsById($job_id){
         $job = (OwnerHelpers::jobs)::where("state",0)->where("id",$job_id)->first();        
-        
+        if(isset($job)){
         if(Auth::user()->owner_type != OwnerHelpers::company_type){
-            $seeker_id = Auth::user()->owner_id;
-            $top = false;
-            $qualifications = (OwnerHelpers::qualifications)::where("seeker_id", $seeker_id)->get();
-            foreach( $qualifications as $data){
-                if($data->degree_id >= $job->degree_id ){
-                    $top = true;
+                $seeker_id = Auth::user()->owner_id;
+                $top = false;
+                $qualifications = (OwnerHelpers::qualifications)::where("seeker_id", $seeker_id)->get();
+                foreach( $qualifications as $data){
+                    if($data->degree_id >= $job->degree_id ){
+                        $top = true;
+                    }
                 }
+                if($top != true)
+                    Session::flash("aviso", "Lamentamos, mas você não é um candidato top para está vaga, por causa do seu titulo academico...");
             }
-            if($top != true)
-                Session::flash("aviso", "Lamentamos, mas você não é um candidato top para está vaga, por causa do seu titulo academico...");
-        }
 
-        return view("company.jobs.job-detail",[
-            "job" => $job,
-        ]);
+            return view("company.jobs.job-detail",[
+                "job" => $job,
+            ]);
+        }
+        return redirect()->back();
     }
     public function my_job_application(){
         $job_seeker = [];
         if(Auth::user()->owner_type != OwnerHelpers::company_type){            
-            $job_seeker = (OwnerHelpers::job_seekers)::where("seeker_id", Auth::user()->owner_id)->get();            
+            $job_seeker = (OwnerHelpers::job_seekers)::where("seeker_id", Auth::user()->owner_id)->
+            whereHas("job", function($query){
+                $query->where("state",0);
+            })->get();            
         }
         return view("company.jobs.job-my-application",[
             "job_seeker" => $job_seeker,
