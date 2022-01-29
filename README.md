@@ -1,4 +1,4 @@
-✨<p align="center">All Credit for Owner</p>
+<p align="center">All Credit for Owner</p>
 
 <p align="center"><img  src="https://avatars1.githubusercontent.com/u/25299982?s=460&u=7aaac2ca5d90b0fc40f0ed476893636c3e6a10e2&v=4" width="150" ></p>
 
